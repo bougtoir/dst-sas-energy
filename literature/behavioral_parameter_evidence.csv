@@ -1,0 +1,6 @@
+parameter,evidence,source,constraint_used
+schedule_elasticity,"No direct empirical estimate of fractional schedule shift transmission to energy-relevant activities found; time-use data (ATUS) show activity timing is only partially determined by work schedules.","ATUS documentation; Roenneberg et al. 2019 J Biol Rhythms (social jetlag)","evidence-informed range 0.5-1.0, default 0.7-1.0 per segment (assumption, not estimate)"
+sleep_response_to_DST,"Acute ~40min sleep loss on spring transition; partial adaptation within ~1 week","Barnes & Wagner 2009 (work injuries); Roenneberg 2019","sleep shift assumed one-for-one with schedule (upper bound); not used to tune energy results"
+wake_darkness_tolerance,"Chronotype distribution implies late sunrise shifts are costly for early types; no quantitative energy constraint","Roenneberg et al. 2019; Juda et al. 2013","lambda_dark used only as sensitivity, not primary objective"
+remote_work_share,"US remote/hybrid share ~10-30% post-2020 surveys","Barrero, Bloom & Davis WFH surveys (published aggregates)","DEFAULT_SEGMENTS remote_workers share 0.10; audited +20pp variant"
+evening_activity_extension,"DST transitions extend evening leisure by ~tens of minutes per day (time-use diaries)","Kotchen & Grant 2011 discussion; time-use literature","implemented as +20-40 min awake-linked load in Indiana decomposition only"

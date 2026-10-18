@@ -1,0 +1,8 @@
+regime,dE_pct,dC_pct
+ST,0.0,0.0
+DST,0.091,0.18
+SAS_daily_energy,-0.527,-0.752
+SAS_monthly_energy,-0.515,-0.738
+SAS_seasonal_energy,-0.454,-0.666
+SAS_threshold_energy,-0.525,-0.745
+SAS_daily_carbon,-0.52,-0.77
