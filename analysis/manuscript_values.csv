@@ -1,0 +1,62 @@
+key,value,source,note
+dst_dE_pct_lat20,0.1544732778084655,dst_sweep.csv,
+dst_dE_pct_lat40,0.045791116105948035,dst_sweep.csv,
+dst_dE_pct_lat60,-0.1301907015700872,dst_sweep.csv,
+dst_dE_pct_mean,0.03382617486451444,dst_sweep.csv,"mean over lats, warming, LED, ac=0.5"
+sweep_dE_min,-0.1501401635946071,dst_sweep.csv,min over 625 synthetic cells
+sweep_dE_max,0.2650596081194136,dst_sweep.csv,max over 625 synthetic cells
+dE_DST_mean,0.09105022289087715,regime_comparison.csv,"mean over lats, warming=0, ac=0.75"
+dE_SAS_daily_energy_mean,-0.527341557975868,regime_comparison.csv,"mean over lats, warming=0, ac=0.75"
+dE_SAS_monthly_energy_mean,-0.5145169038922784,regime_comparison.csv,"mean over lats, warming=0, ac=0.75"
+dE_SAS_daily_carbon_mean,-0.5197111675492988,regime_comparison.csv,"mean over lats, warming=0, ac=0.75"
+sas_monthly_retention,1.1200204428732137,discrete_sas_efficiency_retention.csv,
+sas_seasonal_retention,-0.042479370711319575,discrete_sas_efficiency_retention.csv,
+sas_threshold_retention,1.0006926913944645,discrete_sas_efficiency_retention.csv,
+geo_dst_min,-0.2853483253351079,geography.csv,
+geo_dst_max,0.1217368083987198,geography.csv,
+geo_sas_mean,-0.2933830024190228,geography.csv,
+geo_sas_min,-0.8077548003553208,geography.csv,
+geo_sas_max,-0.1113311588582518,geography.csv,
+hist_dE_1970s_lat45,-0.0129167407590141,historical.csv,
+hist_dE_contemp_lat45,0.0101435532985537,historical.csv,
+hist_dE_future_lat45,0.0241741606632059,historical.csv,
+rev_Tstar_nonNaN_frac,0.17857142857142858,reversal_thresholds.csv,
+thermal_sign_preserved,0.0,thermal_model_sensitivity.csv,
+mc_P_DST_better_energy,0.2587,monte_carlo.csv,
+mc_P_SAS_better_energy,0.3224,monte_carlo.csv,
+mc_P_SAS_better_DST_energy,0.4114,monte_carlo.csv,
+mc_dDST_energy_median,0.04767346526817802,monte_carlo.csv,
+mc_dDST_energy_q025,-0.09163761094918112,monte_carlo.csv,
+mc_dDST_energy_q975,0.22222436419392658,monte_carlo.csv,
+mc_dSAS_energy_median,0.07393246167836995,monte_carlo.csv,
+mc_dSAS_energy_q025,-0.4096246248097731,monte_carlo.csv,
+mc_dSAS_energy_q975,0.4085509868822965,monte_carlo.csv,
+mc_P_DST_better_carbon,0.0981,monte_carlo.csv,
+mc_P_SAS_better_carbon,0.2439,monte_carlo.csv,
+mc_P_SAS_better_DST_carbon,0.4622,monte_carlo.csv,
+mc_dDST_carbon_median,0.11205015061741805,monte_carlo.csv,
+mc_dDST_carbon_q025,-0.049154278867193694,monte_carlo.csv,
+mc_dDST_carbon_q975,0.3472143453861785,monte_carlo.csv,
+mc_dSAS_carbon_median,0.12804480700792903,monte_carlo.csv,
+mc_dSAS_carbon_q025,-0.4132933651341029,monte_carlo.csv,
+mc_dSAS_carbon_q975,0.49243565959317837,monte_carlo.csv,
+pareto_maxshift4_dE,-0.38253635840427314,pareto_frontier.csv,
+pareto_maxshift1_dE,-0.10329723638928207,pareto_frontier.csv,
+pareto_maxshift05_dE,-0.05421386442817302,pareto_frontier.csv,
+wake_dark_sas_4h,0.018089435834084167,pareto_frontier.csv,
+wake_dark_sas_1h,0.014291196420702569,pareto_frontier.csv,
+ciso_tstart_divergence_h,0.17,energy_vs_carbon_optima.csv,
+ciso_carbon_cost_of_Eopt_pct,0.02,energy_vs_carbon_optima.csv,
+indiana_model_baseline_pct,0.13,indiana_decomposition.csv,
+indiana_model_max_pct,0.57,indiana_decomposition.csv,
+indiana_observed_pct,1.0,indiana_decomposition.csv,observed value from Kotchen & Grant 2011
+rev_Tstar_min,0.5,reversal_thresholds.csv,
+rev_Tstar_max,2.75,reversal_thresholds.csv,
+rev_Tstar_count,5.0,reversal_thresholds.csv,
+mc_rho_lat,-0.76,mc_sensitivity.csv,
+mc_rho_ac,0.33,mc_sensitivity.csv,
+mc_rho_hshare,-0.28,mc_sensitivity.csv,
+mc_rho_light,0.01,mc_sensitivity.csv,
+sas_monthly_retention_pct,112.0,discrete_sas_efficiency_retention.csv,percent of daily-optimum benefit
+sas_seasonal_retention_pct,-4.2,discrete_sas_efficiency_retention.csv,percent of daily-optimum benefit
+sas_threshold_retention_pct,100.1,discrete_sas_efficiency_retention.csv,percent of daily-optimum benefit

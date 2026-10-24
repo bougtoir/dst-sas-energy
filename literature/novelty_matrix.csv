@@ -1,0 +1,12 @@
+dimension,KotchenGrant2011,KelloggWolff2008,Havranek2018,Guven2021,RafatiSaraei2026,KrartiHajiah2011,AriesNewsham2008,Verdejo2016,Bellia2021,ThisStudy
+integrated solar-climate-building-grid-activity system,no,no,no,no,no,partial,no,no,partial,YES
+constrained/Pareto activity-time optimization,no,no,no,no,no,no,no,no,no,YES
+ST vs DST vs SAS (third adaptive regime),no,no,no,no,no,no,no,no,no,YES
+climate/technology regime boundaries (warming x AC x LED x latitude),implicit (AC),no,implicit (latitude),yes (AC x weather),implicit (weather),implicit (hot climate),partial,partial,no,YES
+continuous vs implementable discrete scheduling,no,no,no,no,no,no,no,no,no,YES
+hourly load-shape & peak analysis,no,yes (intraday shift),no,no,yes (hourly),no,no,no,partial,YES
+hourly grid carbon interaction (E vs CO2 divergence),no,no,no,no,no,no,no,no,no,YES
+energy-vs-carbon objective split for scheduling,no,no,no,no,no,no,no,no,no,YES
+empirical validation against natural experiments,(is),(is),(meta),(is),(is),sim,(review),(is),sim,validation-targets
+warming reversal threshold quantification,no,no,no,no,no,no,no,no,no,YES
+human subject data,no,no,no,no,no,no,no,no,survey,no (simulation only)
