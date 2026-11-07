@@ -1,0 +1,55 @@
+FINAL REFERENCE ADEQUACY + DECLARATION CONTAMINATION PASS — HANDOFF
+=================================================================
+1. Revision basis: author-edited manuscript_author.docx (author block, affiliation,
+   correspondence, declarations) merged into manuscript/manuscript.md.tmpl; all
+   numeric content still generated from the {{v.*}} registry — nothing hardcoded.
+2. Reference count: 10 -> 31 (all numbered, Applied Energy style, first-appearance
+   order verified monotonic in manuscript_filled.md).
+3. Closest-prior-work search completed; added and cited: Guven et al. 2021 (AC/
+   weather-conditioned DST), Krarti & Hajiah 2011 (Kuwait building simulation),
+   Karasu 2010 (Turkey), Lopez 2020 (Spain), Rafati Sahneh Saraei & Jadidzadeh 2026
+   (Iran, hourly, weather-conditioned). No ~2025 dedicated DST review found beyond
+   the 2018 meta-analysis; no Western-Australia energy study distinct from
+   Kellogg & Wolff located.
+4. Applied-Energy context references added: demand flexibility [11,12], LED [13],
+   AC growth [14,15], average-vs-marginal hourly carbon [16,17,18].
+5. Data/method citations added: NOAA/Reda & Andreas solar [24], ERA5 [25],
+   Open-Meteo Zenodo [26], RC-model review [27], EIA RECS 2020 [28], EIA-930 [29],
+   IPCC 2006 Vol.2 emission factors [30], climate-energy review [31],
+   unequal-hours history [23], lighting review [19], building simulations [20-22].
+6. Declaration contamination: both "Consent"-contaminated sections citing
+   "aggregated, publicly available dispensing data" REMOVED entirely (dispensing/
+   prescription/clinical language does not appear anywhere in the revised
+   manuscript). Single-author singular language throughout.
+7. AI declaration retained verbatim from the author version (accurate: coding/
+   analysis assistance, not merely language editing), per current Elsevier
+   generative-AI policy.
+8. GitHub URL in Data and code availability intentionally left unchanged
+   (https://github.com/bougtoir/dst-sas-energy) for manual author correction.
+9. Verification: all 31 references verified against Crossref/Zenodo/official
+   data-product pages (authors, title, venue, year, volume, pages, DOI) —
+   qc/FINAL_REFERENCE_VERIFICATION.md. Citation audit: qc/REFERENCE_ADEQUACY_AUDIT.md.
+   Novelty recheck: qc/FINAL_NOVELTY_RECHECK.md + literature/novelty_matrix.csv
+   + literature/final_reference_candidates.csv.
+10. Hygiene scan: zero hits for dispensing/patient/prescription/clinical/TODO/
+    FIXME/placeholder; no duplicate References headings; no broken citation
+    numbers ([1]-[31] all used, all resolved); no stale numbers (registry-driven).
+11. Rendered docx verified: OMML math in the review-inline docx (E = E_light+...,
+    C = E·CI, Δ, t_start, λ_dark, inequalities, ρ, T*), zero literal asterisks,
+    figures/tables inline with adjacent captions at first-citation position.
+12. Scientific numerical results unchanged — analysis frozen per spec; no
+    re-run, re-parameterization, or figure/table/numerical edits.
+13. Deliverables:
+    - manuscript/build/manuscript.docx (submission manuscript, author block +
+      declarations + numbered references)
+    - manuscript/build/manuscript_author_revised.docx (same, renamed for clarity)
+    - manuscript/build/manuscript_review_inline.docx (inline-figure review copy)
+    - manuscript/build/references.txt
+    - manuscript/highlights.md
+    - manuscript/build/dst_sas_energy_Applied_Energy_FINAL_refs_checked.zip
+14. Clean build: `python3 analysis/build_manuscript.py` regenerates
+    manuscript_filled.md, manuscript.docx, references.txt with zero missing
+    registry keys.
+15. Remaining human actions: correct the GitHub URL in Data and code availability
+    once the public repo is confirmed live; final Guide-for-Authors compliance
+    check at submission; Editorial Manager upload.

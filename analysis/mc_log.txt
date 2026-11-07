@@ -1,0 +1,7 @@
+0 0s
+2000 102s
+4000 200s
+6000 297s
+8000 396s
+E P(DST<ST)=1.000 P(SAS<ST)=1.000 P(SAS<DST)=1.000 median dDST%=-0.36 [-0.47,-0.26] median dSAS%=-1.52 [-1.96,-1.12]
+C P(DST<ST)=1.000 P(SAS<ST)=1.000 P(SAS<DST)=1.000 median dDST%=-0.38 [-0.52,-0.27] median dSAS%=-1.69 [-2.30,-1.19]

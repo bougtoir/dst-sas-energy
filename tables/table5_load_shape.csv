@@ -1,0 +1,15 @@
+regime,peak_annual,par,p95,p99,peak_hour
+DST,1.259,1.846,1.036,1.197,22.0
+SAS_daily_carbon,1.145,1.686,0.993,1.091,19.375
+SAS_daily_energy,1.145,1.686,0.992,1.095,19.375
+SAS_daily_morning,1.248,1.831,1.046,1.185,21.625
+SAS_monthly_carbon,1.145,1.686,0.993,1.091,19.375
+SAS_monthly_energy,1.145,1.686,0.992,1.1,19.375
+SAS_monthly_morning,1.248,1.831,1.046,1.185,21.625
+SAS_seasonal_carbon,1.145,1.685,0.993,1.091,19.375
+SAS_seasonal_energy,1.145,1.685,0.993,1.091,19.375
+SAS_seasonal_morning,1.248,1.829,1.054,1.185,21.625
+SAS_threshold_carbon,1.145,1.686,0.993,1.091,19.375
+SAS_threshold_energy,1.145,1.686,0.992,1.095,19.375
+SAS_threshold_morning,1.248,1.831,1.046,1.185,21.625
+ST,1.259,1.847,1.033,1.195,22.0
