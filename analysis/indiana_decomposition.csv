@@ -1,0 +1,6 @@
+variant,dE_res_pct,note,observed_pct
+baseline_model_2006config,0.1313719585749165,ST/DST diff at Indiana config; residential+work mix,1.0
++evening_leisure_20min,0.3483568822925974,time-use documented ~20min/day extended evening activity,1.0
++evening_leisure_40min,0.571917106728996,upper plausible extension,1.0
+residential_only_elasticity0.7,0.10113652865296495,rigid segments reflect household-level responses,1.0
+AC_saturation_100pct,0.360674763888995,maximum mechanical cooling availability,1.0

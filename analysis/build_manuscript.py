@@ -1,0 +1,124 @@
+"""Fill {{v.key}} tokens in manuscript.md.tmpl from manuscript_values.csv,
+verify every token resolves, emit markdown + docx + references + registry check.
+"""
+import sys, os, re
+import pandas as pd
+
+A = os.path.dirname(__file__)
+M = os.path.join(A, "..", "manuscript")
+B = os.path.join(M, "build")
+os.makedirs(B, exist_ok=True)
+
+REFS = """1. Yan D, Hong T, Dong B, Mahdavi A, D'Oca S, Gaetani I, Feng X. IEA EBC Annex 66: Definition and simulation of occupant behavior in buildings. Energy and Buildings 2017;156:258-270. doi:10.1016/j.enbuild.2017.09.084
+2. Page J, Robinson D, Morel N, Scartezzini J-L. A generalised stochastic model for the simulation of occupant presence. Energy and Buildings 2008;40(2):83-98. doi:10.1016/j.enbuild.2007.01.018
+3. Jensen SO, Marszal-Pomianowska A, Lollini R, Pasut W, Knotzer A, Engelmann P, Stafford A, Reynders G. IEA EBC Annex 67 Energy Flexible Buildings. Energy and Buildings 2017;155:25-34. doi:10.1016/j.enbuild.2017.08.044
+4. Kathirgamanathan A, De Rosa M, Mangina E, Finn DP. Data-driven predictive control for unlocking building energy flexibility: A review. Renewable and Sustainable Energy Reviews 2021;135:110120. doi:10.1016/j.rser.2020.110120
+5. Siano P. Demand response and smart grids—A survey. Renewable and Sustainable Energy Reviews 2014;30:461-478. doi:10.1016/j.rser.2013.10.022
+6. Albadi MH, El-Saadany EF. A summary of demand response in electricity markets. Electric Power Systems Research 2008;78(11):1989-1996. doi:10.1016/j.epsr.2008.04.002
+7. Kotchen MJ, Grant LE. Does Daylight Saving Time Save Energy? Evidence from a Natural Experiment in Indiana. Review of Economics and Statistics 2011;93(4):1172-1185. doi:10.1162/rest_a_00131
+8. Kellogg R, Wolff H. Daylight time and energy: Evidence from an Australian experiment. Journal of Environmental Economics and Management 2008;56(3):207-220. doi:10.1016/j.jeem.2008.02.003
+9. Havranek T, Herman D, Irsova Z. Does Daylight Saving Save Electricity? A Meta-Analysis. The Energy Journal 2018;39(2):35-61. doi:10.5547/01956574.39.2.thav
+10. Karasu S. The effect of daylight saving time options on electricity consumption of Turkey. Energy 2010;35(9):3773-3782. doi:10.1016/j.energy.2010.05.027
+11. Lopez M. Daylight effect on the electricity demand in Spain and assessment of Daylight Saving Time. Energy Policy 2020;140:111419. doi:10.1016/j.enpol.2020.111419
+12. Verdejo H, Becker C, Echiburu D, Escudero W, Fucks E. Impact of daylight saving time on the Chilean residential consumption. Energy Policy 2016;88:456-464. doi:10.1016/j.enpol.2015.10.051
+13. Hill SI, Desobry F, Garnsey EW, Chong Y. The impact on energy consumption of daylight saving clock changes. Energy Policy 2010;38(9):4955-4965. doi:10.1016/j.enpol.2010.03.079
+14. Belzer DB, Hadley SW, Chin S-M. Impact of Extended Daylight Saving Time on National Energy Consumption. US DOE Report to Congress 2008. doi:10.2172/949762
+15. Guven C, Yuan H, Zhang Q, Aksakalli V. When does daylight saving time save electricity? Weather and air-conditioning. Energy Economics 2021;98:105216. doi:10.1016/j.eneco.2021.105216
+16. Rafati Sahneh Saraei A, Jadidzadeh A. The impact of Daylight Saving Time (DST) on electricity consumption in Iran. Energy Economics 2026;163:109605. doi:10.1016/j.eneco.2026.109605
+17. Elliott C, Yamada M, Penning J, Schober S. Energy Savings Forecast of Solid-State Lighting in General Illumination Applications. US Department of Energy 2019. doi:10.2172/1607661
+18. Davis LW, Gertler PJ. Contribution of air conditioning adoption to future energy use under global warming. Proceedings of the National Academy of Sciences 2015;112(19):5962-5967. doi:10.1073/pnas.1423558112
+19. IEA. The Future of Cooling. International Energy Agency 2018. doi:10.1787/9789264301993-en
+20. de Chalendar JA, Taggart J, Benson SM. Tracking emissions in the US electricity system. Proceedings of the National Academy of Sciences 2019;116(51):25497-25502. doi:10.1073/pnas.1912950116
+21. Hawkes AD. Estimating marginal CO2 emissions rates for national electricity systems. Energy Policy 2010;38(10):5977-5987. doi:10.1016/j.enpol.2010.05.053
+22. Siler-Evans K, Azevedo IL, Morgan MG. Marginal emissions factors for the US electricity system. Environmental Science & Technology 2012;46(9):4742-4748. doi:10.1021/es300145v
+23. Aries MBC, Newsham GR. Effect of daylight saving time on lighting energy use: A literature review. Energy Policy 2008;36(6):1858-1866. doi:10.1016/j.enpol.2007.05.021
+24. Rock BA. Impact of daylight saving time on residential energy consumption and cost. Energy and Buildings 1997;25(1):63-68. doi:10.1016/S0378-7788(96)00990-5
+25. Krarti M, Hajiah A. Analysis of impact of daylight time savings on energy use of buildings in Kuwait. Energy Policy 2011;39(5):2319-2329. doi:10.1016/j.enpol.2011.01.046
+26. Bellia L, Acosta I, Campano MA, Fragliasso F. Impact of daylight saving time on lighting energy consumption and on the biological clock for occupants in office buildings. Solar Energy 2021;211:1347-1364. doi:10.1016/j.solener.2020.10.072
+27. Bacher P, Madsen H. Identifying suitable models for the heat dynamics of buildings. Energy and Buildings 2011;43(7):1511-1522. doi:10.1016/j.enbuild.2011.02.005
+28. Foucquier A, Robert S, Suard F, Stephan L, Jay A. State of the art in building modelling and energy performances prediction: A review. Renewable and Sustainable Energy Reviews 2013;23:272-288. doi:10.1016/j.rser.2013.03.004
+29. Dohrn-van Rossum G. History of the Hour: Clocks and Modern Temporal Orders. University of Chicago Press 1996.
+30. Reda I, Andreas A. Solar position algorithm for solar radiation applications. Solar Energy 2004;76(5):577-589. doi:10.1016/j.solener.2003.12.003
+31. Hersbach H, et al. The ERA5 global reanalysis. Q J R Meteorol Soc 2020;146:1999-2049. doi:10.1002/qj.3803
+32. Zippenfenig P. Open-Meteo.com Weather API. Zenodo 2024. doi:10.5281/zenodo.14582479
+33. US EIA. Residential Energy Consumption Survey (RECS) 2020. US Energy Information Administration 2023. https://www.eia.gov/consumption/residential/
+34. US EIA. Hourly Electric Grid Monitor (EIA-930). US Energy Information Administration 2024. https://www.eia.gov/electricity/gridmonitor/
+35. IPCC. 2006 IPCC Guidelines for National Greenhouse Gas Inventories, Volume 2: Energy. Institute for Global Environmental Strategies 2006.
+36. Auffhammer M, Mansur ET. Measuring climatic impacts on energy consumption: A review of the empirical literature. Energy Economics 2014;46:522-530. doi:10.1016/j.eneco.2014.04.017
+"""
+
+
+def fmt(x):
+    try:
+        v = float(x)
+    except Exception:
+        return str(x)
+    if abs(v) >= 100:
+        return f"{v:.0f}"
+    if abs(v) >= 10:
+        return f"{v:.1f}"
+    if abs(v) >= 1:
+        return f"{v:.2f}"
+    return f"{v:.2f}"
+
+
+def main():
+    reg = pd.read_csv(f"{A}/manuscript_values.csv").set_index("key")["value"]
+    tmpl = open(f"{M}/manuscript.md.tmpl").read()
+    missing = []
+
+    def sub(m):
+        k = m.group(1)
+        if k not in reg.index:
+            missing.append(k)
+            return f"[[MISSING:{k}]]"
+        return fmt(reg[k])
+
+    out = re.sub(r"\{\{v\.([A-Za-z0-9_]+)\}\}", sub, tmpl)
+    if missing:
+        print("MISSING VALUES:", missing); sys.exit(2)
+    open(f"{B}/manuscript_filled.md", "w").write(out)
+    open(f"{B}/references.txt", "w").write(REFS)
+
+    # docx
+    import docx
+    from docx.shared import Pt
+    from docx.oxml.ns import qn
+    doc = docx.Document()
+    _st = doc.styles["Normal"]
+    _st.font.name = "Times New Roman"; _st.font.size = Pt(12)
+    _st.element.rPr.rFonts.set(qn("w:eastAsia"), "Times New Roman")
+    for _s in ("Heading 1", "Heading 2", "Heading 3", "Title"):
+        try:
+            doc.styles[_s].font.name = "Times New Roman"
+            doc.styles[_s].element.rPr.rFonts.set(qn("w:eastAsia"),
+                                                  "Times New Roman")
+        except KeyError:
+            pass
+    for line in out.splitlines():
+        if line.startswith("# "):
+            doc.add_heading(line[2:], 0)
+        elif line.startswith("## "):
+            doc.add_heading(line[3:], 1)
+        elif line.startswith("### "):
+            doc.add_heading(line[4:], 2)
+        elif line.strip():
+            p = doc.add_paragraph()
+            for tok in re.split(r"(\*\*.+?\*\*|\*.+?\*)", line):
+                if not tok:
+                    continue
+                if tok.startswith("**") and tok.endswith("**"):
+                    r = p.add_run(tok[2:-2]); r.bold = True
+                elif tok.startswith("*") and tok.endswith("*") and len(tok) > 2:
+                    r = p.add_run(tok[1:-1]); r.italic = True
+                else:
+                    p.add_run(tok)
+    doc.add_heading("References", 1)
+    for r in REFS.strip().splitlines():
+        doc.add_paragraph(r)
+    doc.save(f"{B}/manuscript.docx")
+    print("built manuscript:", f"{B}/manuscript.docx")
+
+
+if __name__ == "__main__":
+    main()
